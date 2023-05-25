@@ -91,7 +91,7 @@ class empleados_controller extends CI_Controller
 
 			case 'delete_empleado':
 				$info = $this->empleados_model->get_empleado_by_id($id_emp)->row_array();
-				unlink(base_url() . 'imagenes/imagenes/' . $info['foto_emp']);
+				unlink('imagenes/imagenes/' . $info['foto_emp']);
 				$registro=$this->empleados_model->delete_empleado($id_emp);
 				if ($registro) {
 					$message='Eliminado';
