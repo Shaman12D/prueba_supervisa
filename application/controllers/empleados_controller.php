@@ -66,13 +66,14 @@ class empleados_controller extends CI_Controller
 				break;
 
 			case 'edit_empleado':
+				$info=$this->empleados_model->get_empleado_by_id($id_emp)->row_array();
 				$data['nombres_emp'] = $this->input->post('nombres');
 				$data['apellidos_emp'] = $this->input->post('apellidos');
 				$data['tipo_documento_emp'] = $this->input->post('Tdocumento');
 				$data['numero_documento_emp'] = $this->input->post('Ndocumento');
 				if ($_FILES['foto']['error'] == 0) {
 					if ($info['foto_emp']) {
-						unlink(base_url() . 'imagenes/imagenes/' . $info['foto_emp']);
+						unlink('imagenes/imagenes/' . $info['foto_emp']);
 					}
 					$thumbnail = $this->empleados_model->cambiar_img('foto', "imagenes");
 					if ($thumbnail) {
